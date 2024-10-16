@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.catalog-container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.book {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #fff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.book:hover {
+    background-color: #000000;
+}
+
+.book:active {
+    background-color: #000000;
+}
+
+form {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 2px solid #eee;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+}
+
+input[type="file"] {
+    display: block;
+    margin: 10px auto;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d43f3a;
+}
+/* General container for the catalog */
+.catalog-container {
+    padding: 20px;
+}
+
+/* Style for the book categories bar */
+.book-categories {
+    background-color: rgb(204, 0, 0);
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* Individual categories (links) inside the bar */
+.book-categories span {
+    color: #ffffff; /* Guindo color */
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+/* Hover effect for category links */
+.book-categories span:hover {
+    color: white; /* Changes to white on hover */
+}
+
+/* Style for each book */
+.book {
+    background-color: lightgray;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book:hover {
+    background-color: #f0f0f0;
+}

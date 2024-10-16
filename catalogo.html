@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Libros</title>
+    <link rel="stylesheet" href="styles_catalogo.css">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f35c5c; /* Color neutro para el fondo */
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .catalog-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #ff4564; /* Título en color base */
+            text-align: center;
+        }
+
+        .book-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .book-categories span {
+            cursor: pointer;
+            background-color: #fa5a5a; /* Color de botón contrastante */
+            color: rgb(255, 255, 255);
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .book-categories span:hover {
+            background-color: #ff0000; /* Color de hover */
+        }
+
+        .book {
+            background-color: #ffffff; /* Fondo de cada libro */
+            color: #000000; /* Texto oscuro */
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .book:hover {
+            background-color: #fd4949; /* Efecto hover con un tono suave de #de425b */
+            transform: scale(1.05);
+        }
+
+        /* Media queries para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .catalog-container {
+                padding: 10px;
+                margin: 10px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .book-categories {
+                flex-direction: row-reverse;
+                align-items: center;
+            }
+
+            .book-categories span {
+                width: 30%;
+                margin: 5px 0;
+                padding: 10px;
+            }
+
+            .book {
+                font-size: 1em;
+                padding: 10px;
+            }
+        }
+
+        /* Media queries para pantallas muy pequeñas (móviles) */
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.2em;
+            }
+
+            .book-categories span {
+                padding: 8px;
+                font-size: 0.9em;
+            }
+
+            .book {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="catalog-container">
+        <h2>Catálogo de Libros de la Unidad Educativa Técnico Humanístico Santiago I</h2>
+        
+        <!-- Barra de categorías de libros -->
+        <div class="book-categories">
+            <span onclick="filterBooks('all')">Inicio</span>
+            <span onclick="filterBooks('matematica')">Matemática</span>
+            <span onclick="filterBooks('lenguaje')">Lenguaje</span>
+            <span onclick="filterBooks('historia')">Historia</span>
+            <span onclick="filterBooks('quimica')">Química</span>
+            <span onclick="filterBooks('fisica')">Física</span>
+            <span onclick="filterBooks('ingles')">Inglés</span>
+            <span onclick="filterBooks('religion')">Religión</span>
+            <span onclick="filterBooks('artes')">Artes Plásticas</span>
+        </div>
+
+        <!-- Lista de libros -->
+        <div class="book matematica" onclick="viewBook('https://www.utadeo.edu.co/sites/tadeo/files/node/publication/field_attached_file/pdf-_matematicas_basicas-_completo-_09-15.pdf', 3)">Matemática Básica</div>
+        <div class="book matematica" onclick="viewBook('https://www.fundacionareces.es/recursos/doc/portal/2020/10/14/libro-blanco-de-las-matematicas.pdf', 4)">Libro Blanco de Matemática</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.mined.gob.sv/eslenguam/lt/Libro%20de%20texto%203.%C2%B0%20grado.pdf', 3)">Libro de Texto de Lenguaje</div>
+        <div class="book historia" onclick="viewBook('https://editorialkipus.com/files/Historia-de-Bolivia-muestra.pdf', 3)">Historia de Bolivia - Muestra</div>
+        <div class="book quimica" onclick="viewBook('https://sacaba.gob.bo/images/wsacaba/pdf/libros/quimica/LibroQuimica.pdf', 3)">Libro de Química</div>
+        <div class="book fisica" onclick="viewBook('https://fisicas.ucm.es/data/cont/media/www/pag-39686/fisica-general-libro-completo.pdf', 3)">Física General - Libro Completo</div>
+        <div class="book ingles" onclick="viewBook('https://aprendizaje.mec.edu.py/dw-recursos/system/content/c171493/Textos%20Escolares/inglesbasico.pdf', 3)">Inglés Básico</div>
+        <div class="book religion" onclick="viewBook('https://www.editora-sc.es/wp-content/uploads/2020/07/RELIGION-3ESO_web.pdf', 3)">Texto de Religión</div>
+        <div class="book artes" onclick="viewBook('https://guao.org/sites/default/files/biblioteca/Artes%20plásticas.%20Primero%20básico.pdf', 3)">Artes Plásticas Primero Básico</div>
+        <div class="book matematica" onclick="viewBook('http://www.enelaula.unam.mx/Libreria/DGPYFE_1A%20LIBRERIA_47/Fundamentos%20de%20matematicas.pdf', 3)">Libro matematicas</div>
+        <div class="book matematica" onclick="viewBook('https://courses.csail.mit.edu/6.042/spring17/mcs.pdf', 3)">Matemáticas para la Informática</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/LM.pdf', 3)">Logica matematica</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/Logica.pdf', 3)">Logica y Teoria de Conjuntos</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/LF.pdf', 3)">Logica del Finitismo</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/CS.pdf', 3)">El Calculo Secuencial de Gentzen</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/TC.pdf', 3)">Teoria de Conjuntos</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/T.pdf', 3)">Topologia</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/PC.pdf', 3)">Pruebas de Consistencia</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/CG.pdf', 3)">Cardinales Grandes</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/TD.pdf', 3)">Teoria Descriptiva de Conjuntos</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/TD.pdf', 3)">Teorias de Conjuntos</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/AlgGeo.pdf', 3)">El Álgebra y la Geometría Elemental</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/ANE.pdf', 3)">Análisis no estándar </div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/ITAl.pdf', 3)">Introducción a la teoría algebraica de números</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/ITAn.pdf', 3)">Introducción a la teoría analítica de números</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/IGE.pdf', 3)">Introducción a la geometría euclídea</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/IC.pdf', 3)">Introducción al Cálculo Diferencial</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/Al.pdf', 3)">Álgebra,  Geometría</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/An.pdf', 3)">Análisis matemático</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/TG.pdf', 3)">Teoría de grupos</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/GD.pdf', 3)">Geometría diferencial</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/TA.pdf', 3)">Topología algebraica</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.es/ivorra/Libros/TAl.pdf', 3)">Teoría algebraica de números</div>
+        <div class="book matematica" onclick="viewBook('https://proyectodescartes.org/iCartesiLibri/PDF/Matematicas_8-9.pdf', 3)">Matematicas_8-9</div>
+        <div class="book matematica" onclick="viewBook('https://www.uv.mx/personal/grihernandez/files/2011/04/libromaestro.pdf', 3)">Libro para el Maestro</div>
+        <div class="book matematica" onclick="viewBook('https://web.sectei.cdmx.gob.mx/covid/wp-content/uploads/documentos/Matematicas-para-profesores-de-secundaria.pdf', 3)">Matematicas para profesores de secundaria</div>
+        <div class="book matematica" onclick="viewBook('https://www.eis.unl.edu.ar/z/adjuntos/2635/Matem%C3%A1tica_II.pdf', 3)">Matemática - 2do año</div>
+        <div class="book matematica" onclick="viewBook('https://bdigital.uncu.edu.ar/objetos_digitales/1678/mat2egb3.pdf', 3)">Matematica II</div>
+        <div class="book matematica" onclick="viewBook('https://www.ugr.es/~jgodino/edumat-maestros/manual/9_didactica_maestros.pdf', 3)">DIDÁCTICA DE LAS MATEMÁTICAS PARA MAESTROS </div>
+        <div class="book lenguaje" onclick="viewBook('https://www.educacion.navarra.es/documents/713364/714655/Lenguaje+y+Literatura.pdf/07afdef6-96ea-4c9a-9e18-5581f372ec13', 3)">Área de Lengua Castellana y Literatura</div>
+        <div class="book lenguaje" onclick="viewBook('https://docentesaldia.com/wp-content/uploads/2023/07/Libro-Primer-grado-secundaria-Lenguajes.pdf', 3)">Libro Primer grado secundaria Lenguajes</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.minedu.gob.bo/files/publicaciones/veaye/dgea/7_COMUNICACION_Y_LENGUAJES_-_APRENDIZAJES_APLICADOS.pdf', 3)">COMUNICACIÓN Y LENGUAJES</div>
+        <div class="book lenguaje" onclick="viewBook('https://bdigital.uncu.edu.ar/objetos_digitales/1428/lipolimodal.pdf', 3)">Lengua I - Polimodal </div>
+        <div class="book lenguaje" onclick="viewBook('https://www.guao.org/sites/default/files/biblioteca/Secundaria%20Activa%20Lenguaje%208%C2%B0.pdf', 3)">Secundaria Activa Lenguaje 8</div>
+        <div class="book lenguaje" onclick="viewBook('https://educacion.gob.ec/wp-content/uploads/downloads/2018/04/curriculo/2DO-BGU_Texto-LENGUA.pdf', 3)">Lengua y Literatura</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.msthompson.edu.ar/mst/docs/CuadernilloLengua.pdf', 3)">CUADERNILLO DE LENGUA Y LITERATURA</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.mseg.gba.gov.ar/areas/Vucetich/GUIAS%20DE%20MATERIAS%202021/6%20Comunicaci%C3%B3n.pdf', 3)">PRÁCTICAS DEL LENGUAJE Y COMUNICACIÓN</div>
+        <div class="book lenguaje" onclick="viewBook('https://tdx.cat/bitstream/handle/10803/124167/MCC_TESIS.pdf', 3)">Lectura literaria en secundaria</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.mined.gob.sv/eslenguam/gm/Gu%C3%ADa%20metodol%C3%B3gica%205.%C2%B0%20grado%20(tomo%201).pdf', 3)">Lenguaje Guía metodológica tomo I</div>
+        <div class="book lenguaje" onclick="viewBook('https://se.gob.hn/media/files/basica/Guia_de_docente_Espanol_7.pdf', 3)">Guía para el docente Séptimo grado Libro de texto</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.madrid.org/bvirtual/BVCM001552.pdf', 3)">Comprensión lectora y expresión escrita - 4º curso</div>
+        <div class="book lenguaje" onclick="viewBook('https://se.gob.hn/media/files/basica/Guia_de_docente_Espanol_7.pdf', 3)">Guía para el docente Séptimo grado Libro de texto</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.kaxilkiuic.org.mx/wp-content/uploads/2020/07/CUADERNILLO_SECUNDARIA_Espa%C3%B1ol_compressed.pdf', 3)">CUADERNILLO DE EJERCICIOS DE ESPAÑOL ...</div>
+        <div class="book lenguaje" onclick="viewBook('https://iesmarchettianexoiii-tuc.infd.edu.ar/sitio/wp-content/uploads/2021/11/Cuadernillo-Lengua-INGRESO-2022.pdf', 3)">Cuadernillo-Lengua-INGRESO-2022.pdf</div>
+        <div class="book lenguaje" onclick="viewBook('https://contenidos.mineducacion.gov.co/ntg/men/archivos/Referentes_Calidad/Modelos_Flexibles/Secundaria_Activa/Guias_del_estudiante/Lenguaje/LG_Grado09.pdf', 3)">Lenguaje Grado 9 – Secundaria Activa</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.defensoria.gob.bo/uploads/files/comunicacion-y-lenguaje-1%C2%B0-de-secundaria-02.pdf', 3)">planificación de desarrollo curricular - plan de clase</div>
+        <div class="book lenguaje" onclick="viewBook('https://educacion.gob.ec/wp-content/uploads/downloads/2016/09/librostexto/Lengua_2.pdf', 3)">Lengua_2</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.liceojgm.cl/Derecha/1%C2%B0%20medio%20Lengua%20y%20Literatura.pdf', 3)">Lengua y Literatura</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.unicef.org/dominicanrepublic/media/7576/file/Gu%C3%ADa%20Did%C3%A1ctica-Lengua%20espa%C3%B1ol-%20tercer%20grado.pdf', 3)">Guía Didáctica-Lengua español- tercer grado. ...</div>
+        <div class="book lenguaje" onclick="viewBook('https://cdnsnte1.s3.us-west-1.amazonaws.com/wp-content/uploads/2023/02/22095042/Campo_Formativo_de_Lenguajes_Fases.pdf', 3)">CAMPO FORMATIVO DE LENGUAJES</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.redalyc.org/pdf/270/27021144003.pdf', 3)">Lengua castellana y comunicación en el aula </div>
+        <div class="book lenguaje" onclick="viewBook('https://www.eest6.com/cuadernillo_p_del_lenguaje_2022.pdf', 3)">PRÁCTICAS DEL LENGUAJE Cuadernillo de actividades</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.unrn.edu.ar/archivos/noticia/1265/Cuadernillo_Lectura%20y%20Escritura_ok.pdf', 3)">Cuadernillo_Lectura y Escritura</div>
+        <div class="book lenguaje" onclick="viewBook('https://abc.gob.ar/secretarias/sites/default/files/2021-05/Literatura.pdf', 3)">literatura</div>
+        <div class="book lenguaje" onclick="viewBook('https://guao.org/sites/default/files/biblioteca/Secundaria%20Activa%20Lenguaje%206%C2%B0.pdf', 3)">Secundaria Activa Lenguaje 6</div>
+        <div class="book lenguaje" onclick="viewBook('https://buenosaires.gob.ar/areas/educacion/curricula/pdf/media/programa_lengua_lit.pdf', 3)">Contenidos para el Nivel Medio. Lengua y Literatura</div>
+        <div class="book lenguaje" onclick="viewBook('https://acem.org.gt/phocadownload/Coleccin%20%20Lenguaje%20y%20Comunicacin.pdf', 3)">Lenguaje y Comunicación - ACEM</div>
+        <div class="book lenguaje" onclick="viewBook('https://www.colegiocolonos.cl/upload/textos/lenguaje-y-comunicacion-3o-medio-d627f44819e0cdb235a1ba10dc32df2e.pdf', 3)">Texto del estudiante - Lenguaje y Comunicación</div>
+        <div class="book lenguaje" onclick="viewBook('https://0201.nccdn.net/1_2/000/000/09b/a7d/Taller-de-Lectura-y-Redaccion-I.pdf', 3)">Taller de Lectura y Redacción I</div>
+        <div class="book historia" onclick="viewBook('https://historiabolivia.org.bo/img_usr/Tomo-IV.pdf', 3)">Bolivia, su historia</div>
+        <div class="book historia" onclick="viewBook('https://dehesa.unex.es/bitstream/10662/7804/4/TS-6018.pdf', 3)">Historia general de Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://historiabolivia.org.bo/img_usr/Tomo-I.pdf', 3)">BOLIVIA, SU HISTORIA   </div>
+        <div class="book historia" onclick="viewBook('https://rcharquina.wordpress.com/wp-content/uploads/2020/10/afe5e-herbert-s.-klein-historia-de-bolivia.pdf', 3)">Herbert S. Klein – Historia de Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://portal.amelica.org/ameli/journal/111/1112732005/1112732005.pdf', 3)">el Curso elemental de historia de Bolivia (1936-1944)</div>
+        <div class="book historia" onclick="viewBook('https://www.pueblos-originarios.ucb.edu.bo/digital/106002063.pdf', 3)">“Historia de Santa Cruz de la Sierra - Una nueva República </div>
+        <div class="book historia" onclick="viewBook('https://www.researchgate.net/profile/Salvador_Romero_Ballivian/publication/321387067_HISTORIA_y_CULTURA_SOCIEDAD_BOLIVIANA_DE_HISTORIA_LA_PAZ-BOLIVIA/links/5a2027b30f7e9bfc48fe007e/HISTORIA-y-CULTURA-SOCIEDAD-BOLIVIANA-DE-HISTORIA-LA-PAZ-BOLIVIA.pdf', 3)">HISTORIA y CULTURA</div>
+        <div class="book historia" onclick="viewBook('https://biblioteca.clacso.edu.ar/clacso/coediciones/20130214112018/ElnacimientodelEstadoPlurinacional.pdf', 3)">El nacimiento del Estado Plurinacional de Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://biblio.flacsoandes.edu.ec/libros/digital/42923.pdf', 3)">Bibliografía Boliviana 2009</div>
+        <div class="book historia" onclick="viewBook('https://elagoraasociacioncivil.files.wordpress.com/2015/09/historia-de-la-salud-pc3bablica-en-bolivia.pdf', 3)">Historia de la Salud Pública en Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://www.vicepresidencia.gob.bo/IMG/pdf/4-ejes.pdf', 3)">Descolonización en Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://www.archivoybibliotecanacionales.org.bo/images/contenido/Biblioteca/Bibliografia%20boliviana/BibliografiaBoliviana2002a2003.pdf', 3)">bibliografía boliviana monografías 2002-2003</div>
+        <div class="book historia" onclick="viewBook('https://bdigital.uncu.edu.ar/objetos_digitales/5984/catedravirtual-integracionlatinoamericana-situacion-actual.pdf', 3)">Situación actual de la educación en Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://dehesa.unex.es/bitstream/10662/7810/1/TS-6024.pdf', 3)">Historia de Bolivia: la fundación de la república </div>
+        <div class="book historia" onclick="viewBook('https://www.redalyc.org/pdf/869/86900804.pdf', 3)">historia de la universidad boliviana</div>
+        <div class="book historia" onclick="viewBook('https://resistir.info/livros/renuncio.pdf', 3)">CARLOS D. MESA GISBERT</div>
+        <div class="book historia" onclick="viewBook('https://www.researchgate.net/profile/Flavia-A-Montano-Centellas/publication/340418484_Familia_Thraupidae/links/5e87cb73299bf130797868c5/Familia-Thraupidae.pdf', 3)">Historia natural del valle de La Paz</div>
+        <div class="book historia" onclick="viewBook('https://www.nodalcultura.am/wp-content/uploads/2017/06/Antologia-del-Cuento-Boliviano-Varios-Autores-ilovepdf-compressed.pdf', 3)">ANTOLOGÍA DEL CUENTO BOLIVIANO</div>
+        <div class="book historia" onclick="viewBook('https://www.archivoybibliotecanacionales.org.bo/images/contenido/Biblioteca/Bibliografia%20boliviana/Bibliograf%C3%ADaBoliviana2018.pdf', 3)">Bibliografía boliviana 2018</div>
+        <div class="book historia" onclick="viewBook('https://cefadigital.edu.ar/bitstream/1847939/1258/1/VC%2020-2019%20TREJO.pdf', 3)">La Guerra deL Chaco </div>
+        <div class="book historia" onclick="viewBook('https://www.redalyc.org/pdf/3601/360133457009.pdf', 3)">La dramática historia de la Guerra del Pacífico </div>
+        <div class="book historia" onclick="viewBook('https://biblioteca.clacso.edu.ar/clacso/becas/20131009042300/123456.pdf', 3)">Avatares de las ciencias sociales en Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://biblioteca.clacso.edu.ar/Bolivia/agruco/20171003032431/pdf_552.pdf', 3)">Sociología de los movimientos sociales en Bolivia</div>
+        <div class="book historia" onclick="viewBook('https://www.guao.org/sites/default/files/biblioteca/Historia%20de%20la%20Humanidad%2C%202do%20a%C3%B1o.%20Ciencias%20Sociales.pdf', 3)">Historia de la Humanidad, 2do año. Ciencias Sociales</div>
+        <div class="book historia" onclick="viewBook('https://catedradatos.com.ar/media/Origenes-Lewis-Dartnell.pdf', 3)">Origenes Lewis Dartnell</div>
+        <div class="book historia" onclick="viewBook('https://unesdoc.unesco.org/ark:/48223/pf0000004362_spa', 3)">Compendio de la Historia universal</div>
+        <div class="book historia" onclick="viewBook('https://www.hoyesarte.com/wp-content/uploads/2021/10/Historia-oculta-Humanidad.pdf', 3)">La historia oculta de la humanidad</div>
+        <div class="book historia" onclick="viewBook('https://www.josepmariacarbo.cat/storage/app/media/zeldin-theodore-historia-intima-de-la-humanidad.pdf', 3)">Theodore Zeldin - Historia íntima de la humanidad</div>
+        <div class="book historia" onclick="viewBook('https://apuntesfilosoficos.cl/textos/Jaspers%20-%20La%20historia%20de%20la%20humanidad.pdf', 3)">LA HISTORIA DE LA HUMANIDAD</div>
+        <div class="book historia" onclick="viewBook('https://archivos.juridicas.unam.mx/www/bjv/libros/1/140/2.pdf', 3)">INTRODUCCIÓN La historia de la humanidad nos enseña ...</div>
+        <div class="book historia" onclick="viewBook('https://hum.unne.edu.ar/academica/ambientacion/anexos/anexo_historia.pdf', 3)">Para comprender la historia</div>
+        <div class="book historia" onclick="viewBook('https://www.educacion.gob.ec/wp-content/uploads/downloads/2016/09/librostexto/HISTORIA-1-BGU.pdf', 3)">Historia 1 BGU</div>
+        <div class="book historia" onclick="viewBook('https://editorialagora.com.ar/wp-content/uploads/2021/01/Historia-sociedad-humana-web.pdf', 3)">Historia de la sociedad humana</div>
+        <div class="book historia" onclick="viewBook('https://digital.csic.es/bitstream/10261/60909/19/Zeuske%20Esclavitud%2C%20historia%20de%20la%20humanidad.pdf', 3)">   Esclavitud, historia de la humanidad</div>
+        <div class="book quimica" onclick="viewBook('https://sacaba.gob.bo/images/wsacaba/pdf/libros/quimica/Chang-QuimicaGeneral7thedicion.pdf', 3)">Quimica General</div>
+        <div class="book quimica" onclick="viewBook('https://www.educacion.gob.ec/wp-content/uploads/downloads/2016/09/librostexto/Texto_quimica_1_BGU.pdf', 3)">QUÍMICA</div>
+        <div class="book quimica" onclick="viewBook('https://asimov.com.ar/wp-content/uploads/Libro-de-Qu%C3%ADmica-todo-junto-para-anillar-2018.pdf', 3)">Libro de Química todo junto para anillar</div>
+        <div class="book quimica" onclick="viewBook('https://www.osinergmin.gob.pe/newweb/pages/Publico/LV_files/Manual_Quimica_General.pdf', 3)">Manual de Química General</div>
+        <div class="book quimica" onclick="viewBook('https://downloads.editoracientifica.com.br/books/978-65-87196-79-4.pdf', 3)">CONCEPTOS BÁSICOS - QUÍMICA</div>
+        <div class="book quimica" onclick="viewBook('https://dgep.uas.edu.mx/librosdigitales/1er_SEMESTRE/5_Quimica_General.pdf', 3)">Química general: un enfoque en competencias</div>
+        <div class="book quimica" onclick="viewBook('https://fcen.uncuyo.edu.ar/catedras/john-mcmurry-quimica-organica-2008-cengage-learning.pdf', 3)">QUÍMICA ORGÁNICA</div>
+        <div class="book quimica" onclick="viewBook('https://villaeducacion.mx/descargar.php?idtema=5653&data=f93a46_ensenando-quimica-material-de-apoyo-para-profesores-de-secundaria_compressed.pdf', 3)">Enseñando</div>
+        <div class="book quimica" onclick="viewBook('https://quimica247403824.files.wordpress.com/2018/11/quimica_general_petrucci.pdf', 3)">Química General</div>
+        <div class="book quimica" onclick="viewBook('https://www.juntadeandalucia.es/export/drupaljda/1337161060iniciacion_a_la_quimica_1.pdf', 3)">niciación a la Química</div>
+        <div class="book quimica" onclick="viewBook('https://repositorio.uteq.edu.ec/bitstream/43000/3609/1/Fundamentos%20de%20Quimica.pdf', 3)">Fundamentos de Quimica</div>
+        <div class="book quimica" onclick="viewBook('https://avdiaz.files.wordpress.com/2008/08/libro_de_qumica_general.pdf', 3)">química general</div>
+        <div class="book quimica" onclick="viewBook('https://exactas.unca.edu.ar/ingres/2022/2022-0602.pdf', 3)">“QUÍMICA GENERAL” “QUÍMICA I”</div>
+        <div class="book quimica" onclick="viewBook('https://www7.uc.cl/sw_educ/educacion/grecia/plano/html/pdfs/cra/quimica/NM2/RQ2O102.pdf', 3)">La Química del Carbono</div>
+        <div class="book quimica" onclick="viewBook('https://www.osinergmin.gob.pe/seccion/institucional/Libro-Virtual-CEU/Manual_Quimica_General.pdf', 3)">Libro de Química General</div>
+        <div class="book quimica" onclick="viewBook('https://fcen.uncuyo.edu.ar/upload/libro-badui200626571.pdf', 3)">Quimica de los alimentos</div>
+        <div class="book quimica" onclick="viewBook('https://www.mined.gob.cu/wp-content/teleclases/listos/+libros/03_preuniversitario/11no/Quimica%20Secundaria%20Basica%20Parte%202.pdf', 3)">Quimica Secundaria Basica Parte 2</div>
+        <div class="book quimica" onclick="viewBook('https://www.didacticamultimedia.com/registro/quimica/10/documentos/Quimica10Solucionario.pdf', 3)">Química 10º</div>
+        <div class="book quimica" onclick="viewBook('https://exa.unne.edu.ar/quimica/quimgeneral/UnidadINocionesBasicas.pdf', 3)">QUIMICA GENERAL</div>
+        <div class="book quimica" onclick="viewBook('https://dspace.ups.edu.ec/bitstream/123456789/20283/4/Qui%CC%81mica%20inorga%CC%81nica.pdf', 3)">Química inorgánica</div>
+        <div class="book quimica" onclick="viewBook('https://micienciaquimicap.files.wordpress.com/2014/03/quimica-pre-ii-sanchez-garcia-balderas.pdf', 3)">libro de química II </div>
+        <div class="book quimica" onclick="viewBook('https://abc.gob.ar/secretarias/sites/default/files/2021-05/Introducci%C3%B3n%20a%20la%20Qu%C3%ADmica.pdf', 3)">introducción a la QuímiCa</div>
+        <div class="book quimica" onclick="viewBook('https://gaceta.cch.unam.mx/sites/default/files/libros/2022-04/quimica-i-unidad-i-1.pdf', 3)">Química I </div>
+        <div class="book quimica" onclick="viewBook('https://dialnet.unirioja.es/descarga/libro/873818.pdf', 3)">Nomenclatura química y normas de la IUPAC en español</div>
+        <div class="book quimica" onclick="viewBook('https://www.uv.es/tunon/Master_Ing_Bio/tema_1.pdf', 3)">Tema 1. Conceptos Básicos en Química</div>
+        <div class="book quimica" onclick="viewBook('https://librosdeconsultaparabachillerato.files.wordpress.com/2018/08/quimica-organica-recio_4taed.pdf ', 3)">quimica-organica</div>
+        <div class="book quimica" onclick="viewBook('https://www.cpel.uba.ar/images/Guia-Quimica-2-2017.pdf', 3)">QUÍMICA 2º AÑO</div>
+        <div class="book quimica" onclick="viewBook('https://clea.edu.mx/biblioteca/files/original/2cf48d4f11668a70deb6f2afd7ce3f94.pdf', 3)">Quimica General - 7ma Edicion </div>
+        <div class="book quimica" onclick="viewBook('https://www.surcosistemas.com.ar/virtual/ebooks/QUIMICA_ANALITICA_Novena_edicion.pdf', 3)">Fundamentos de Quimica Analitica </div>
+        <div class="book quimica" onclick="viewBook('https://www.mined.gob.cu/wp-content/teleclases/listos/+libros/03_preuniversitario/10mo/10mo_quimica.pdf', 3)">10mo – Química </div>
+        <div class="book quimica" onclick="viewBook('https://www.unl.edu.ar/ingreso/cursos/quimica/wp-content/uploads/sites/4/2021/11/Unidad-6-Reacciones-quimicas.pdf', 3)">Unidad-6-Reacciones-quimicas.pdf</div>
+        <div class="book quimica" onclick="viewBook('https://www.mheducation.es/bcv/guide/capitulo/8448177126.pdf', 3)">Las sustancias químicas</div>
+        <div class="book quimica" onclick="viewBook('https://ciencias.ens.uabc.mx/documentos/manual/bio/ManualdeQuimica.pdf', 3)">Química general</div>
+        <div class="book fisica" onclick="viewBook('https://web.sectei.cdmx.gob.mx/covid/wp-content/uploads/documentos/Fisica-para-profesores-de-secundaria.pdf', 3)">Enseñando Física</div>
+        <div class="book fisica" onclick="viewBook('https://sacaba.gob.bo/images/wsacaba/pdf/libros/fisica/fisica.pdf', 3)">FÍSICA</div>
+        <div class="book fisica" onclick="viewBook('https://practicadefisica.files.wordpress.com/2011/03/fisica-secundaria-2011.pdf', 3)">4° Año Secundaria</div>
+        <div class="book fisica" onclick="viewBook('https://fcai.uncuyo.edu.ar/upload/cuadernillo-ingreso-fisica-2016.pdf', 3)">Cuadernillo de Física</div>
+        <div class="book fisica" onclick="viewBook('https://www.osinergmin.gob.pe/newweb/pages/Publico/LV_files/Manual_Fisica_General.pdf', 3)">Manual de Física General></div>
+        <div class="book fisica" onclick="viewBook('https://www.guao.org/sites/default/files/biblioteca/F%C3%ADsica%20b%C3%A1sica.pdf', 3)">Física básica.pdf</div>
+        <div class="book fisica" onclick="viewBook('https://www.educ.ar/app/files/repositorio/html/10/75/f2daf8f5-1381-41cb-9571-9448ae94ff0a/90881/data/08dcf08f-7a07-11e1-820f-ed15e3c494af/fisica1.pdf', 3)">Física</div>
+        <div class="book fisica" onclick="viewBook('https://www.mined.gob.cu/wp-content/teleclases/listos/+libros/02_secundaria/8vo/8vo_fisica.pdf', 3)">8vo – Física </div>
+        <div class="book fisica" onclick="viewBook('https://www.usebeq.edu.mx/PaginaWEB/Content/estudia/C2122/MaterialesApoyo/Secundaria/LibrosTexto/Telesecundaria/SegundoGrado/2do%20Ciencias%20y%20Tecnologia%20Fisica.pdf', 3)">ts-ciencias-fisica-segundo</div>
+        <div class="book fisica" onclick="viewBook('https://resources.inei.edu.mx/pdfRecursos/1629133883_RiosDeTinta%20(1)%20ciencias%202.pdf', 3)">ENERGIA - Ciencias 2 - Física</div>
+        <div class="book fisica" onclick="viewBook('https://www.frro.utn.edu.ar/repositorio/secretarias/sac/ingreso/archivos/Unidad_3_fisica.pdf', 3)">Física - Unidad 3. Estática</div>
+        <div class="book fisica" onclick="viewBook('https://ccie.com.mx/wp-content/uploads/2020/03/fisica-conceptual_paulhewitt.pdf', 3)">Fisica Conceptual </div>
+        <div class="book fisica" onclick="viewBook('https://www.xeologosdelmundu.org/wp-content/uploads/2016/03/TARBUCK-y-LUTGENS-Ciencias-de-la-Tierra-8va-ed.-1.pdf', 3)">Ciencias de la Tierra. Una introducción a la geología física</div>
+        <div class="book fisica" onclick="viewBook('https://ia600802.us.archive.org/10/items/regetakipawit8agedexuri/regetakipawitagedexuri.pdf', 3)">Libros de fisica basica para secundaria pdf</div>
+        <div class="book fisica" onclick="viewBook('https://tiendaeditorial.uca.es/descargas-pdf/84-7786-910-3-completo.pdf', 3)">Ejercicios de Física: resueltos y propuestos</div>
+        <div class="book fisica" onclick="viewBook('https://civilshare.files.wordpress.com/2016/05/fisica_mendoza.pdf', 3)">fisica</div>
+        <div class="book fisica" onclick="viewBook('https://iesbolivar-cba.infd.edu.ar/sitio/upload/M%D3DULO__IIII_DISCIPLINAR_F%CDSICA.pdf', 3)">Introducción a la Física</div>
+        <div class="book fisica" onclick="viewBook('https://editorial.us.es/es/muestra/720177?f=pdf', 3)">FÍSICA GENERAL: MECÁNICA</div>
+        <div class="book fisica" onclick="viewBook('https://www.euskadi.eus/contenidos/documentacion/inn_doc_ed_cientifica/eu_def/adjuntos/natur_zientziak/DBH1Z-03-BEROA_TENP/1-DBH1Z-03-IRAKASLE/Beroa.pdf', 3)">CALOR Introducción - En física</div>
+        <div class="book fisica" onclick="viewBook('https://nemdigitalstorage.blob.core.windows.net/nem-main/files/FR_S6_MAR29092020_2SECU_FISICA.pdf', 3)">Segundo de Secundaria Ciencias. Física</div>
+        <div class="book fisica" onclick="viewBook('https://www.guao.org/sites/default/files/biblioteca/Secundaria%20Activa%20Educaci%C3%B3n%20F%C3%ADsica%208%C2%B0.pdf', 3)">Secundaria Activa Educación Física 8°</div>
+        <div class="book fisica" onclick="viewBook('https://www.cobachbcs.edu.mx/content/files/Docentes/manuales-de-practicas-de-laboratorio/manual-de-practicas-de-laboratorio-fisica-I.pdf', 3)">Manual de practicas de laboratorio Física I</div>
+        <div class="book fisica" onclick="viewBook('https://www.dges.edu.uy/sites/default/files/Planes_programas/5BD/fisica_biologico.pdf', 3)">PROGRAMA FÍSICA</div>
+        <div class="book fisica" onclick="viewBook('https://gimnasiomoderno.edu.co/pdf/exlibris/exlibris_17.pdf', 3)">Libro Física Cuántica</div>
+        <div class="book fisica" onclick="viewBook('https://practicadefisica.files.wordpress.com/2012/03/fisica-2012-gestion-ambiental.pdf', 3)">FISICA TERCER AÑO</div>
+        <div class="book fisica" onclick="viewBook('https://www.centroculturalabiertosc.mx/assets/fisica---paul-e.-tippens---7ma.-edicion-revisada.pdf', 3)">Física, Conceptos y aplicaciones</div>
+        <div class="book fisica" onclick="viewBook('https://recreadigital.jalisco.gob.mx/wp-content/uploads/2022/04/2FisNovQ1-Imprimible.pdf', 3)">FÍSICA “Física y conocimiento del Universo” </div>
+        <div class="book fisica" onclick="viewBook('https://bibdigital.epn.edu.ec/bitstream/15000/15173/1/Laboratorio%20de%20f%C3%ADsica.pdf', 3)">Laboratorio de física.pdf </div>
+        <div class="book fisica" onclick="viewBook('https://facite.uas.edu.mx/onam/doc/Libro%20Introduccion%20a%20la%20Astronomia%20y%20la%20Astrofisica%20-%20INAOE.pdf', 3)">Libro Introduccion a la Astronomia y la Astrofisica </div>
+        <div class="book fisica" onclick="viewBook('https://www.ugr.es/~ute/tema0-tema1.pdf', 3)">Introducción a Astrofísica</div>
+        <div class="book fisica" onclick="viewBook('https://www.astrosirio.org/docs/Curso.pdf', 3)">Astrofísica y Cosmología</div>
+        <div class="book fisica" onclick="viewBook('https://www.sea-astronomia.es/sites/default/files/100_conceptos_astr.pdf', 3)">Conceptos básicos de Astronomía</div>
+        <div class="book fisica" onclick="viewBook('https://molwick.com/es/libros/z154-libros-astrofisica.pdf', 3)">Astrofísica y Cosmología Global</div>
+        <div class="book fisica" onclick="viewBook('https://oac.unc.edu.ar/files/Descargas/Apuntes_basicos_de_Astronomia.pdf', 3)">¿CUÁNTO SABÉS SOBRE EL UNIVERSO?</div>
+        <div class="book fisica" onclick="viewBook('https://proassetspdlcom.cdnstatics2.com/usuaris/libros_contenido/arxius/50/49099_Astrofisica_para_jovenes_con_prisas.pdf', 3)">Astrofísica para jóvenes con prisas</div>
+        <div class="book fisica" onclick="viewBook('https://mestreacasa.gva.es/c/document_library/get_file?folderId=500020326118&name=DLFE-1598551.pdf', 3)">LIBRO ASTRONOMIA</div>
+        <div class="book fisica" onclick="viewBook('https://www.educacion.navarra.es/documents/713364/714655/astro_dg.pdf/7ea4c57c-a458-4eb2-81b4-3c29bd97689f', 3)">AstronomÌa - Educacion Secundaria </div>
+        <div class="book fisica" onclick="viewBook('https://proassetspdlcom.cdnstatics2.com/usuaris/libros_contenido/arxius/37/36697_ASTROFISICA_PARA_GENTE_CON_PRISAS.pdf', 3)">Astrofísica Neil deGrasse Tyson</div>
+        <div class="book fisica" onclick="viewBook('https://www.bibliotecanacionaldigital.gob.cl/colecciones/BND/00/RC/RC0070700.pdf', 3)">ASTROFISICA GENERAL</div>
+        <div class="book fisica" onclick="viewBook('https://cab.inta-csic.es/users/pgperez/Teaching/Astrofisica/01_Historia_final.pdf', 3)">Historia de la Astronomía</div>
+        <div class="book ingles" onclick="viewBook('https://cdn.education.ne.gov/wp-content/uploads/2020/05/Gu%C3%ADa-Biling%C3%BCe-Ingl%C3%A9s-%E2%80%93-Espa%C3%B1ol-Binder.pdf', 3)">Guía Bilingüe Inglés – Español</div>
+        <div class="book ingles" onclick="viewBook('https://guao.org/sites/default/files/biblioteca/El%20curso%20m%C3%A1s%20completo%20de%20ingl%C3%A9s.pdf', 3)">El curso más completo de inglés</div>
+        <div class="book ingles" onclick="viewBook('https://www.nwoesc.org/Downloads/English%20in%20Minutes%20Bk1.pdf', 3)">¡Inglés en Minutos!</div>
+        <div class="book ingles" onclick="viewBook('https://www.murciaeduca.es/ceacomarcadelriomula/sitio/upload/GramaticacompletaTrasteando_1.pdf', 3)">GRAMATICA COMPLETA INGLÉS</div>
+        <div class="book ingles" onclick="viewBook('https://www.educa.jcyl.es/fomentolectura/es/informacion-especifica/publicaciones/publicaciones-comunidad-castilla-leon/lecturas-ingles-primeros-lectores.ficheros/1151367-GUIA%20LECTURAS%20EN%20INGL%C3%89S.pdf', 3)">Selección de lecturas en inglés para primeros lectores</div>
+        <div class="book ingles" onclick="viewBook('https://educacion.gob.ec/wp-content/uploads/downloads/2018/08/Ingles-book-A1.1-8vo-EGB.pdf', 3)">Ingles-book</div>
+        <div class="book ingles" onclick="viewBook('https://www.uv.mx/pozarica/cadi/files/2019/11/Ingles-1-Tema-1.pdf', 3)">Ingles-1-Tema-1.pdf</div>
+        <div class="book ingles" onclick="viewBook('https://ia601406.us.archive.org/4/items/InglesSinBarrerasManual01Jakersm/Ingles%20Sin%20Barreras%20Manual%2001-jakersm_text.pdf', 3)">Ingles Sin Barreras Manual 01</div>
+        <div class="book ingles" onclick="viewBook('https://mercaba.org/SANLUIS/IDIOMAS/Ingl%C3%A9s/Aprende%20ingl%C3%A9s%20en%207%20d%C3%ADas.PDF', 3)">Aprende inglés en siete días</div>
+        <div class="book ingles" onclick="viewBook('https://www.consejosalta.org.ar/wp-content/uploads/English-for-Accounting-Ingles-para-contabilidad.pdf', 3)">Inglés para contabilidad</div>
+        <div class="book ingles" onclick="viewBook('https://www.larousse.es/primer_capitulo/vocabulario-basico-del-ingles.pdf', 3)">vocabulario-basico-del-ingles.pdf</div>
+        <div class="book ingles" onclick="viewBook('https://mercaba.org/SANLUIS/IDIOMAS/Ingl%C3%A9s/Curso%20De%20Ingles%20Nivel%20Alto.pdf', 3)">CURSO DE INGLES NIVEL ALTO</div>
+        <div class="book ingles" onclick="viewBook('https://dialnet.unirioja.es/descarga/articulo/3391524.pdf', 3)">EL INGLÉS MEJOR A EDADES TEMPRANAS</div>
+        <div class="book ingles" onclick="viewBook('https://guao.org/sites/default/files/biblioteca/El%20curso%20m%C3%A1s%20completo%20de%20ingl%C3%A9s.pdf', 3)">El curso más completo de inglés</div>
+        <div class="book religion" onclick="viewBook('https://red.minedu.gob.bo/repositorio/fuente/32830.pdf', 3)">Valores, Espiritualidades y Religiones</div>
+        <div class="book religion" onclick="viewBook('https://repositorio.uca.edu.ar/bitstream/123456789/8870/1/religiosidad-espiritualidad-conceptos.pdf', 3)">La Religiosidad y la Espiritualidad</div>
+        <div class="book religion" onclick="viewBook('https://bdigital.uexternado.edu.co/bitstreams/e8528183-67d6-4075-a425-f8c4071f059a/download', 3)">concepciones y prácticas de la espiritualidad </div>
+        <div class="book religion" onclick="viewBook('https://milmileniosdepaz.org/wp-content/uploads/2020/12/Valores-espirituales-compartidos.pdf', 3)">Valores espirituales compartidos</div>
+        <div class="book religion" onclick="viewBook('https://www.federacioneditores.org/img/documentos/RELIGION.pdf', 3)">Editoriales de Religión</div>
+        <div class="book religion" onclick="viewBook('https://redescolar.ilce.edu.mx/sitios/proyectos/bullying_oto21/pdf/valores-humanos.pdf', 3)">Valores Humanos</div>
+        <div class="book religion" onclick="viewBook('https://revistas.comillas.edu/index.php/razonyfe/article/download/19473/17896/46935', 3)">DETERMINANTES ESPIRITUALES DE SALUD</div>
+        <div class="book religion" onclick="viewBook('https://www.unodc.org/documents/bolivia/Cuaderno_de_Formacion_Continua_1.pdf', 3)">FORTALECEMOS VALORES, PRINCIPIOS Y VIRTUDES</div>
+        <div class="book religion" onclick="viewBook('https://www.solidaridadobrera.org/ateneo_nacho/libros/Francisco%20Diez%20de%20Velasco%20-%20Historia%20de%20las%20religiones.pdf', 3)">Historia de las religiones</div>
+        <div class="book religion" onclick="viewBook('https://www.aacademica.org/hugo.simkin/14.pdf', 3)">Espiritualidad, religiosidad y bienestar </div>
+        <div class="book religion" onclick="viewBook('https://dialnet.unirioja.es/descarga/articulo/5645307.pdf', 3)">Efectos positivos de la religión y la espiritualidad</div>
+        <div class="book religion" onclick="viewBook('https://www.revistakula.com.ar/wp-content/uploads/2020/05/G%C3%A9nero-y-Religiosidades-libro-sentidos-y-experiencias-femeninas-de-lo-sagrado.pdf', 3)">Género y Religiosidades libro sentidos y experiencias</div>
+        <div class="book religion" onclick="viewBook('https://la-religion.com/assets/downloads/Nes20_Libro-de-res%C3%BAmenes.pdf', 3)">Religión y Espiritualidad en la Sociedad</div>
+        <div class="book religion" onclick="viewBook('https://repositorio.uca.edu.ar/bitstream/123456789/12569/1/espiritualidad-religiosidad-empatia.pdf', 3)">Espiritualidad, Religiosidad y Empatía</div>
+        <div class="book religion" onclick="viewBook('https://segundosilva.com.ar/segundosilva/wp-content/uploads/2016/02/Smith-Huston-Las-religiones-del-mundo.pdf', 3)">Smith, Huston – Las religiones del mundo </div>
+        <div class="book religion" onclick="viewBook('https://viajemosaunmundollamadopreescolar.files.wordpress.com/2012/10/el-libro-de-los-valores.pdf', 3)">El libro de los valores</div>
+        <div class="book religion" onclick="viewBook('https://investigadores.ucu.edu.uy/files/12395455/La_religion_como_experiencia_cotidiana_c_1_.pdf', 3)">La religión como experiencia cotidiana</div>
+        <div class="book religion" onclick="viewBook('https://www.scielo.br/j/bioet/a/fYJLKyYVM7nFp9LzVDsD9Gx/?lang=es&format=pdf', 3)">Religiosidad y espiritualidad en el tratamiento </div>
+        <div class="book religion" onclick="viewBook('https://omegalfa.es/downloadfile.php?file=libros/religion-y-ciencia.pdf', 3)">Religión y ciencia</div>
+        <div class="book religion" onclick="viewBook('https://biblioteca.clacso.edu.ar/clacso/se/20210203073629/Religiones-espacios.pdf', 3)">Religiones y espacios públicos en América Latina</div>
+        <div class="book religion" onclick="viewBook('https://www.educapanama.edu.pa/sites/default/files/documentos/programas-educacion-basica-general-premedia-religion-7-8-9-2014.pdf', 3)">Religión, Moral y Valores</div>
+        <div class="book religion" onclick="viewBook('https://dialnet.unirioja.es/descarga/articulo/7047994.pdf', 3)">Integrando la Espiritualidad en la Consejería Profesional </div>
+        <div class="book religion" onclick="viewBook('https://ibero.mx/web/filesd/publicaciones/la_dimension_espiritual.pdf', 3)">La dimensión espiritual de grandes científicos</div>
+        <div class="book religion" onclick="viewBook('https://www.feyalegria.org/wp-content/uploads/fya-biblioteca/archivos/file/Revista_FeyAlegria_12_2011.pdf', 3)">Identidad y Espiritualidad vividas en misión</div>
+        <div class="book religion" onclick="viewBook('https://bibliotecadigital.mineduc.cl/bitstream/handle/20.500.12365/20274/MINEDUC-Libro%20Inteligencia%20Espiritual%20y%20ERE.pdf?sequence=1&isAllowed=y', 3)">inteligencia espiritual y educación religiosa escolar </div>
+        <div class="book religion" onclick="viewBook('https://archivos.juridicas.unam.mx/www/bjv/libros/11/5135/9.pdf', 3)">RELIGIONES, CREENCIAS Y PRÁCTICAS TRADICIONALES</div>
+        <div class="book religion" onclick="viewBook('https://anth.umd.edu/sites/anth.umd.edu/files/pubs/Viteri%20Hill%20Williams%20Carrera%20Diversidades%20Espirituales%20y%20Religiosas%20en%20Ecuador%20libro%20final%20.pdf', 3)">Diversidades espirituales y religiosas </div>
+        <div class="book religion" onclick="viewBook('https://revistas.comillas.edu/index.php/pensamiento/article/download/4663/4478/10570', 3)">ESPIRITUALIDAD CRISTIANA EN EL MUNDO ACTUAL</div>
+        <div class="book artes" onclick="viewBook('https://red.minedu.gob.bo/repositorio/fuente/32831.pdf', 3)">Artes Plásticas y Visuales </div>
+        <div class="book artes" onclick="viewBook('https://tareasnufed558.files.wordpress.com/2013/01/libro-de-artes-plc3a1sticas-1.pdf', 3)">libro de artes plasticas</div>
+        <div class="book artes" onclick="viewBook('https://artistica.mineduc.cl/wp-content/uploads/sites/58/2016/04/TECNICAS-ARTISTICAS.pdf', 3)">TÉCNICAS ARTÍSTICAS</div>
+        <div class="book artes" onclick="viewBook('https://www.guao.org/sites/default/files/biblioteca/Educaci%C3%B3n%20pl%C3%A1stica.pdf', 3)">Educación plástica</div>
+        <div class="book artes" onclick="viewBook('https://www.unir.net/wp-content/uploads/2016/09/Manual_DIDACTICA_PLASTICA_.pdf', 3)">Didáctica de las artes plásticas y visuales</div>
+        <div class="book artes" onclick="viewBook('https://www.cultura.gob.cl/wp-content/uploads/2016/02/cuaderno2_web.pdf', 3)">POR QUÉ ENSEÑAR ARTE Y CÓMO HACERLO</div>
+        <div class="book artes" onclick="viewBook('https://oei.int/downloads/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjR5IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ce61e83119ff1243739e65017358f34b9abf40c7/el-arte-en-el-aula-guia-plastica.pdf', 3)">el arte en el aula guia plastica</div>
+        <div class="book artes" onclick="viewBook('https://educacionnosinartes.files.wordpress.com/2022/10/libro-blanco-educacion-artistica-plastica-visual-y-audiovisual.pdf', 3)">libro blanco educacion artistica plastica visual </div>
+        <div class="book artes" onclick="viewBook('https://cpem25.files.wordpress.com/2020/06/cuadernillo-de-educacic3b3n-plc3a1stica-2020.pdf', 3)">Cuadernillo de Educación Plástica 1° año </div>
+        <div class="book artes" onclick="viewBook('https://www.mep.go.cr/sites/default/files/media/inventario_material_did%25C3%25A1ctico_artes_plasticas.pdf', 3)">Inventario Material didáctico Artes Plásticas final</div>
+        <div class="book artes" onclick="viewBook('https://dspace.umh.es/bitstream/11000/32987/1/TFM%20Hern%C3%A1ndez%20Zapata%2C%20Ana.pdf', 3)">EL LIBRO DE ARTISTA</div>
+        <div class="book artes" onclick="viewBook('https://artes.unc.edu.ar/files/cuadernillo-extensi%C3%B3n-digital-FINAL3.pdf', 3)">I CUADERNILLO DE EXTENSIÓN EN ARTES</div>
+        <div class="book artes" onclick="viewBook('https://ventanavt6.weebly.com/uploads/3/9/1/3/3913135/guia_didactica_plastica-6_santillana_09-10.pdf', 3)">Dibujo y pintura 6 PRIMARIA Guía</div>
+        <div class="book artes" onclick="viewBook('https://dgep.uas.edu.mx/librosdigitales/6to_SEMESTRE/Libro_Apreciacion%20de%20las%20artes.pdf', 3)">Libro Apreciacion de las artes</div>
+        <div class="book artes" onclick="viewBook('https://www.colegiomontreal.com.mx/index_htm_files/1RO%20B%20Agosto%20Septiembre.pdf', 3)">Primero de Secundaria Artes Visuales </div>
+        <div class="book artes" onclick="viewBook('https://www.ipn.mx/assets/files/innovacion/docs/libros/el-arte-por-el-arte/arte-por-el-arte.pdf', 3)">¿El arte por el arte? La influencia de la educación artística</div>
+        <div class="book artes" onclick="viewBook('https://www.mejoredu.gob.mx/images/publicaciones/boletin-3/boletin27-2024.pdf', 3)">Arte y educación: una conjunción perfecta</div>
+        <div class="book artes" onclick="viewBook('https://oei.int/downloads/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBamt2IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b2c682887d6b69f306c9f26404e20ad401b300aa/Modulo%20IV%20-%20Dibujo%20y%20la%20Pintura.pdf', 3)">el arte del dibujo, los colores y la pintura en la educación </div>
+        <div class="book artes" onclick="viewBook('https://www.mheducation.es/bcv/guide/capitulo/844817724X.pdf', 3)">2 Elementos visuales de la imagen</div>
+        <div class="book artes" onclick="viewBook('https://cdn.www.gob.pe/uploads/document/file/6205532/60708-recurso-2-secundaria.pdf', 3)">Activación artística con énfasis en las artes plásticas </div>
+        <div class="book artes" onclick="viewBook('https://intellectum.unisabana.edu.co/bitstream/10818/5679/1/128890.PDF', 3)">LAS ARTES PLÁSTICAS PARA LA SUPERACIÓN </div>
+        <div class="book artes" onclick="viewBook('https://www.redalyc.org/journal/874/87457958005/87457958005.pdf', 3)">La enseñanza de las artes plásticas en Bogotá, 1880-1920</div>
+        <div class="book artes" onclick="viewBook('https://www.nebrija.com/programas-postgrado/master/profesorado-eso-bachillerato-fp/pdf-asignaturas/didactica-artes-plasticas.pdf', 3)">Didáctica de la Educación Artística</div>
+        <div class="book artes" onclick="viewBook('https://abc.gob.ar/secretarias/sites/default/files/2021-05/Orientaci%C3%B3n%20Artes%20Visuales-Presentaci%C3%B3n%20%281%29.pdf', 3)">Artes VisuAles</div>
+        <div class="book artes" onclick="viewBook('https://mediacionartistica.org/wp-content/uploads/2022/02/la_educacion_artistica_no_son_manualidad.pdf', 3)">La educación artística no son manualidades</div>
+        <div class="book artes" onclick="viewBook('https://dialnet.unirioja.es/descarga/articulo/7009627.pdf', 3)">el diseño curricular de educación visual y plástica</div>
+        <div class="book artes" onclick="viewBook('https://dgep.uas.edu.mx/librosdigitales/5to_SEMESTRE/47_Dibujo_tecnico_I.pdf', 3)">Dibujo Técnico I</div>
+        <div class="book artes" onclick="viewBook('https://uvadoc.uva.es/bitstream/handle/10324/18692/TFG-O%20790.pdf', 3)">Educación Artística </div>
+        <div class="book artes" onclick="viewBook('https://repositorio.unican.es/xmlui/bitstream/handle/10902/13204/PuenteVerdeMarina.pdf', 3)">Las artes en educación</div>
+        <div class="book artes" onclick="viewBook('https://www.fpurisimaconcepcion.org/wp-content/uploads/2020/08/ACTIVIDADES_ARTE_Y_CULTURA.pdf', 3)">ACTIVIDADES DE ARTE Y CULTURA DESDE CASA</div>
+        <div class="book artes" onclick="viewBook('https://www.mep.go.cr/sites/default/files/media/artesplasticas3cicloydiversificada.pdf', 3)">Programas de Estudio de Artes Plásticas</div>
+        <div class="book artes" onclick="viewBook('https://comprosf.grupo-sm.com/Catalogos_2024/Secundaria/Andalucia_cuadernos/223424_Educacion_Plastica.pdf', 3)">Educación Plástica, Visual y Audiovisual</div>
+        <div class="book artes" onclick="viewBook('https://www.unetxea.org/dokumentuak/arte_educacion_desarrollo.pdf', 3)">Arte, educación y desarrollo</div>
+        <div class="book artes" onclick="viewBook('https://repository.uniminuto.edu/server/api/core/bitstreams/4fc1c4c0-fac2-4f55-b7b1-08248c0fd033/content', 3)">las artes plásticas como estrategia pedagógica</div>
+        <div class="book artes" onclick="viewBook('https://edgargomezbonilla.files.wordpress.com/2012/03/arte-y-cultura.pdf', 3)">arte y cultura</div>
+        <div class="book artes" onclick="viewBook('https://www.carm.es/web/descarga?IDCONTENIDO=12977&ALIAS=PUBT&RASTRO=c$m4330&IDADIC=7705&ARCHIVO=Texto+Completo+1+Introducci%C3%B3n+a+la+expresi%C3%B3n+pl%C3%A1stica+infantil.+An%C3%A1lisis+y+desarrollo.pdf', 3)">Introducción a la expresión plástica infantil</div>
+        <div class="book artes" onclick="viewBook('https://repository.libertadores.edu.co/bitstreams/b8c71fb1-6a1f-4e14-8c2f-4f9d2b651a28/download', 3)">Desarrollo del pensamiento crítico a través de las artes</div>
+        <div class="book artes" onclick="viewBook('https://portalacademico.cch.unam.mx/materiales/prof/matdidac/paquedic/ExpGraf1.pdf', 3)">Introducción al dibujo artístico </div>
+        <div class="book artes" onclick="viewBook('https://upload.wikimedia.org/wikipedia/commons/c/cc/Dibujo_art%C3%ADstico_-_Nociones_b%C3%A1sicas.pdf', 3)">Dibujo artístico - Nociones básicas</div>
+        <div class="book artes" onclick="viewBook('https://www.pijaworld.com/docu/Dibujar_Pintar_Principiantes.pdf', 3)">Dibujar Pintar Principiantes</div>
+        <div class="book artes" onclick="viewBook('https://oa.upm.es/48387/1/TFM_DAVID_MIMBRERO_JIMENEZ.pdf', 3)">EL DIBUJO EN PERSPECTIVA A MANO ALZADA</div>
+        <div class="book artes" onclick="viewBook('https://artistica.mineduc.cl/wp-content/uploads/sites/58/2016/04/TECNICAS-ARTISTICAS.pdf', 3)">TÉCNICAS ARTÍSTICAS</div>
+    </div>
+
+    <!-- JavaScript para ver libros y filtrar -->
+    <script>
+        function viewBook(bookURL, tabIndex = 1) {
+            var selectedBook = event.target;
+            setTimeout(function() {
+                window.location.href = `vista_libro.html?book=${bookURL}&tab=${tabIndex}`;
+            }, 500); // Espera 0.5 segundos antes de redirigir
+        }
+
+        function filterBooks(category) {
+            var books = document.getElementsByClassName('book');
+            
+            for (var i = 0; i < books.length; i++) {
+                if (category === 'all') {
+                    books[i].style.display = 'block'; // Mostrar todos los libros
+                } else {
+                    if (books[i].classList.contains(category)) {
+                        books[i].style.display = 'block';
+                    } else {
+                        books[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        // Mostrar todos los libros al inicio
+        filterBooks('all');
+    </script>
+</body>
+</html>
+
+
+
